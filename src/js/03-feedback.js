@@ -60,8 +60,8 @@ function downloadLocalStorage() {
   if (localStorage.length !== 0) {
     const lsObj = localStorage.getItem('feedback-form-state');
     const jsObj = JSON.parse(lsObj);
-    inputValues.email = jsObj.email;
-    inputValues.message = jsObj.message;
+    inputValues.email = jsObj.email || '';
+    inputValues.message = jsObj.message || '';
     feedbackForm.elements.email.value = inputValues.email;
     feedbackForm.elements.message.value = inputValues.message;
   }
@@ -82,7 +82,8 @@ function localStorageSubmit(e) {
   console.log('inputValues', inputValues);
   e.preventDefault();
 
+  e.currentTarget.reset();
   localStorage.clear();
-  feedbackForm.elements.email.value = '';
-  feedbackForm.elements.message.value = '';
+  // feedbackForm.elements.email.value = '';
+  // feedbackForm.elements.message.value = '';
 }
